@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { insertMessageSchema, insertProjectSchema, projects, messages } from './schema';
+import { insertMessageSchema, insertProjectSchema, projects, messages, activities, profile } from './schema';
 
 export const errorSchemas = {
   validation: z.object({
@@ -75,3 +75,5 @@ export function buildUrl(path: string, params?: Record<string, string | number>)
   }
   return url;
 }
+
+export type InsertMessage = z.infer<typeof insertMessageSchema>;
