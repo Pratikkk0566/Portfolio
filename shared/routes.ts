@@ -32,6 +32,25 @@ export const api = {
       },
     },
   },
+  activities: {
+    list: {
+      method: 'GET' as const,
+      path: '/api/activities' as const,
+      responses: {
+        200: z.array(z.custom<typeof activities.$inferSelect>()),
+      },
+    },
+  },
+  profile: {
+    get: {
+      method: 'GET' as const,
+      path: '/api/profile' as const,
+      responses: {
+        200: z.custom<typeof profile.$inferSelect>(),
+        404: errorSchemas.notFound,
+      },
+    },
+  },
   messages: {
     create: {
       method: 'POST' as const,

@@ -5,6 +5,34 @@ import { insertMessageSchema } from "@shared/schema";
 
 export async function registerRoutes(httpServer: Server, app: Express): Promise<Server> {
   // Seed initial data
+  const existingProfile = await storage.getProfile();
+  if (!existingProfile) {
+    await storage.updateProfile({
+      name: "Pixel Developer",
+      bio: "Full-stack engineer crafting 8-bit digital experiences with modern code.",
+      githubUrl: "https://github.com",
+      instagramUrl: "https://instagram.com",
+      linkedinUrl: "https://linkedin.com",
+      twitterUrl: "https://twitter.com",
+    });
+  }
+
+  const existingActivities = await storage.getActivities();
+  if (existingActivities.length === 0) {
+    await storage.createActivity({
+      title: "Open Source Contributor",
+      description: "Contributed pixel-art shaders to the Retro-Graphics library.",
+      date: "Feb 2026",
+      icon: "Code",
+    });
+    await storage.createActivity({
+      title: "Game Jam Winner",
+      description: "First place in the 48-hour 'Bit-by-Bit' retro game jam.",
+      date: "Jan 2026",
+      icon: "Trophy",
+    });
+  }
+
   const existingProjects = await storage.getProjects();
   if (existingProjects.length === 0) {
     await storage.createProject({
@@ -37,6 +65,17 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
       isFeatured: false
     });
   }
+
+  app.get("/api/profile", async (_req, res) => {
+    const p = await storage.getProfile();
+    if (!p) return res.status(404).json({ message: "Profile not found" });
+    res.json(p);
+  });
+
+  app.get("/api/activities", async (_req, res) => {
+    const a = await storage.getActivities();
+    res.json(a);
+  });
 
   app.get("/api/projects", async (_req, res) => {
     const projects = await storage.getProjects();
