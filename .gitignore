@@ -1,1 +1,9 @@
+# Ignore zip archives
 *.zip
+
+# Node / build stuff
+node_modules
+
+# Replit
+.replit
+.cache
