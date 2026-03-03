@@ -87,34 +87,105 @@ export default function Home() {
           </RetroCard>
         </div>
 
-        {/* Avatar / Stats Section */}
+        {/* Tech Stack & Quick Stats Section */}
         <motion.div 
           className="w-full md:w-1/3 space-y-6"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <div className="pixel-border bg-black/60 relative overflow-hidden group">
-            <div className="aspect-square bg-gray-900 relative overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1555680202-c86f0e12f086?w=600&h=600&fit=crop" 
-                alt="Avatar" 
-                className="w-full h-full object-cover filter contrast-125 sepia-[.5] hue-rotate-[320deg] group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_4px,3px_100%] pointer-events-none z-10"></div>
-            </div>
-            
-            <div className="absolute bottom-4 left-0 right-0 text-center">
-              <span className="bg-black text-primary px-2 font-display text-xs border border-primary">LVL. 99 ENGINEER</span>
-            </div>
-          </div>
+          {/* Tech Stack Card */}
+          <RetroCard title="TECH_STACK" delay={0.3}>
+            <div className="space-y-3">
+              <div className="text-xs font-mono text-muted-foreground mb-3">
+                TECHNOLOGIES USED
+              </div>
+              
+              {/* Frontend */}
+              <div className="space-y-2">
+                <p className="text-xs font-bold text-primary uppercase">Frontend</p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-2 py-1 bg-primary/10 border border-primary/30 text-primary text-[10px] font-mono">React</span>
+                  <span className="px-2 py-1 bg-primary/10 border border-primary/30 text-primary text-[10px] font-mono">TypeScript</span>
+                  <span className="px-2 py-1 bg-primary/10 border border-primary/30 text-primary text-[10px] font-mono">Tailwind CSS</span>
+                </div>
+              </div>
 
-          <RetroCard title="SKILL_TREE" delay={0.6}>
+              {/* Backend */}
+              <div className="space-y-2">
+                <p className="text-xs font-bold text-secondary uppercase">Backend</p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-2 py-1 bg-secondary/10 border border-secondary/30 text-secondary text-[10px] font-mono">Node.js</span>
+                  <span className="px-2 py-1 bg-secondary/10 border border-secondary/30 text-secondary text-[10px] font-mono">Express</span>
+                  <span className="px-2 py-1 bg-secondary/10 border border-secondary/30 text-secondary text-[10px] font-mono">PostgreSQL</span>
+                </div>
+              </div>
+
+              {/* AI Tools */}
+              <div className="space-y-2">
+                <p className="text-xs font-bold text-accent uppercase">AI Assistants</p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-2 py-1 bg-accent/10 border border-accent/30 text-accent text-[10px] font-mono">Kiro AI</span>
+                  <span className="px-2 py-1 bg-accent/10 border border-accent/30 text-accent text-[10px] font-mono">Replit AI</span>
+                  <span className="px-2 py-1 bg-accent/10 border border-accent/30 text-accent text-[10px] font-mono">GitHub Copilot</span>
+                </div>
+              </div>
+
+              {/* Animation */}
+              <div className="space-y-2">
+                <p className="text-xs font-bold text-green-400 uppercase">Animation</p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-2 py-1 bg-green-400/10 border border-green-400/30 text-green-400 text-[10px] font-mono">Framer Motion</span>
+                </div>
+              </div>
+            </div>
+          </RetroCard>
+
+          {/* Quick Stats Card */}
+          <RetroCard title="QUICK_STATS" delay={0.5}>
             <div className="space-y-4">
-              <StatsBar label="REACT / NEXT.JS" value={95} color="#FF00FF" />
-              <StatsBar label="TYPESCRIPT" value={90} color="#00FFFF" />
-              <StatsBar label="NODE / BACKEND" value={85} color="#FFFF00" />
-              <StatsBar label="UI DESIGN" value={80} color="#00FF00" />
+              <div className="flex justify-between items-center border-b border-border/30 pb-2">
+                <span className="text-xs font-mono text-muted-foreground">PROJECTS</span>
+                <span className="text-lg font-bold text-primary font-display">03</span>
+              </div>
+              <div className="flex justify-between items-center border-b border-border/30 pb-2">
+                <span className="text-xs font-mono text-muted-foreground">ACHIEVEMENTS</span>
+                <span className="text-lg font-bold text-secondary font-display">03</span>
+              </div>
+              <div className="flex justify-between items-center border-b border-border/30 pb-2">
+                <span className="text-xs font-mono text-muted-foreground">TECH STACK</span>
+                <span className="text-lg font-bold text-accent font-display">10+</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-xs font-mono text-muted-foreground">EXPERIENCE</span>
+                <span className="text-lg font-bold text-green-400 font-display">GROWING</span>
+              </div>
+            </div>
+          </RetroCard>
+
+          {/* Development Tools Card */}
+          <RetroCard title="DEV_TOOLS" delay={0.7}>
+            <div className="space-y-2 text-xs font-mono">
+              <div className="flex items-center gap-2">
+                <span className="text-primary">▸</span>
+                <span className="text-muted-foreground">VS Code + Extensions</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-secondary">▸</span>
+                <span className="text-muted-foreground">Git & GitHub</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-accent">▸</span>
+                <span className="text-muted-foreground">Chrome DevTools</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-green-400">▸</span>
+                <span className="text-muted-foreground">Figma for Design</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-primary">▸</span>
+                <span className="text-muted-foreground">AI-Powered Coding</span>
+              </div>
             </div>
           </RetroCard>
         </motion.div>
