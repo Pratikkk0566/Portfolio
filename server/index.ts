@@ -183,15 +183,18 @@ app.use((req, res, next) => {
    * Listen on specified port (default: 5000)
    * 
    * PORT CONFIGURATION:
-   * - Reads from environment variable PORT
+   * - Reads from environment variable PORT (Railway sets this automatically)
    * - Falls back to 5000 if not set
-   * - Binds to localhost for local development
+   * - Binds to 0.0.0.0 for Railway (not localhost)
    */
   const port = parseInt(process.env.PORT || "5000", 10);
   
-  httpServer.listen(port, "localhost", () => {
+  // Listen on 0.0.0.0 for Railway/production, localhost for development
+  const host = process.env.NODE_ENV === "production" ? "0.0.0.0" : "localhost";
+  
+  httpServer.listen(port, host, () => {
     log(`serving on port ${port}`);
-    console.log(`\n🚀 Server ready at http://localhost:${port}\n`);
+    console.log(`\n🚀 Server ready at http://${host}:${port}\n`);
   });
 })();
 
